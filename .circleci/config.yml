@@ -10,4 +10,4 @@ jobs:
           command: apt-get update;
       - run:
           name: Install yamllint
-          command: apt-get install yamllint;
+          command: apt-get -y install yamllint;
