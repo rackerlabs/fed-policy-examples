@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Update apt and install yamllint
-          command: 'apt-get update && apt-get install --reinstall python-pkg-resources && apt-get -y install yamllint;'
+          command: 'apt-get update && apt-get install -y --reinstall python-pkg-resources && apt-get -y install yamllint;'
       - run:
           name: Lint
           command: 'cd yaml-examples && yamllint .'
