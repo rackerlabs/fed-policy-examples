@@ -5,41 +5,22 @@ mapping:
   rules:
     -
       local:
-        faws:
-          groups:
-            multiValue: true
-            value:
-              - "{Ats(groups)}"
         user:
           domain: "{D}"
           email: "{Pt(/saml2p:Response/saml2:Assertion/saml2:Subject/saml2:NameID)}"
-          expire: PT12H
+          expire: "{D}"
           name: "{D}"
           roles:
             - "{0}"
-          groups:
-            - "{1}"
       remote:
         -
           multiValue: true
           path: |
               (
-                if (mapping:get-attributes('groups')='rax.support_admin_all') then ('ticketing:admin') else (),
-                if (mapping:get-attributes('groups')='rax.sysadmin') then ('nova:admin', 'ticketing:admin') else (),
-                if (mapping:get-attributes('groups')='rax.observer_all') then ('ticketing:observer') else (),
-                if (mapping:get-attributes('groups')='rax.ticketing_support_faws_3_CTU') then ('ticketing:admin/faws:test_account_faws_3_CTU') else (),
-                if (mapping:get-attributes('groups')='rax.sysadmin_faws_3_CTU') then ('ticketing:admin/faws:test_account_faws_3_CTU') else (),
-                if (mapping:get-attributes('groups')='rax.business_analyst_faws_3_CTU') then ('ticketing:observer/faws:test_account_faws_3_CTU') else (),
-                if (mapping:get-attributes('groups')='rax.ticketing_support_faws_2_CTU') then ('ticketing:admin/faws:test_account_faws_2_CTU') else (),
-                if (mapping:get-attributes('groups')='rax.sysadmin_faws_2_CTU') then ('ticketing:admin/faws:test_account_faws_2_CTU') else (),
-                if (mapping:get-attributes('groups')='rax.business_analyst_faws_2_CTU') then ('ticketing:observer/faws:test_account_faws_2_CTU') else ()
-              )
-        -
-          multiValue: true
-          path: |
-              (
-                if (mapping:get-attributes('groups')='rax.sysadmin') then ('sysadmin') else (),
-                if (mapping:get-attributes('groups')='rax.ticketing-observer') then ('support-observer') else (),
-                if (mapping:get-attributes('groups')='rax.nova') then ('nova-admins') else()
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('ticketing:admin') else (),
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('nova:admin', 'ticketing:admin') else (),
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('ticketing:observer') else (),
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('ticketing:admin/insert_tenant_id_here') else (),
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('ticketing:observer/insert_tenant_id_here') else ()
               )
   version: RAX-1
