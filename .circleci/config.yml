@@ -2,12 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
+      - image: debian:stretch
     steps:
       - checkout
       - run:
           name: Update apt and install yamllint
-          command: 'apt-get update && apt-get -y install yamllint;'
+          command: 'apt-get update && apt-get install --reinstall python-pkg-resources && apt-get -y install yamllint;'
       - run:
           name: Lint
           command: 'cd yaml-examples && yamllint .'
