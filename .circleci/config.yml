@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Update apt-get
-          command: sudo apt-get update;
+          command: apt-get update;
       - run:
           name: Install yamllint
-          command: sudo apt-get install yamllint
+          command: apt-get install yamllint;
