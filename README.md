@@ -12,3 +12,6 @@ Unsupported Formats:
 JSON and XML examples will be coming in the near future.
 
 YAML policies will be linted using yamllint https://github.com/adrienverge/yamllint
+
+If you need a quick way to clean up some valid yaml, you can run it through this linter/formatting tool:
+http://www.yamllint.com/
