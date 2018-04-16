@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install yamllint
-          command: 'pip install yamllint'
+          command: 'sudo pip install yamllint'
       - run:
           name: Lint
           command: 'cd yaml-examples && yamllint .'
