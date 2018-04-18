@@ -1,5 +1,6 @@
-# Assumptions: example assumes your identity provider includes a SAML attribute named 'groups' that includes the
-# ldap groups a user belongs too. Rename it to match your SAML attributes name.
+# Assumptions: example assumes your identity provider includes a SAML attribute
+# named 'groups' that includes the ldap groups a user belongs to.
+# Rename it to match your SAML attributes name.
 
 ---
 mapping:
@@ -14,7 +15,7 @@ mapping:
         user:
           domain: "{D}"
           email: "{Pt(/saml2p:Response/saml2:Assertion/saml2:Subject/saml2:NameID)}"
-          expire: PT12H
+          expire: "PT12H"
           name: "{D}"
           roles:
             - "{0}"
@@ -25,7 +26,7 @@ mapping:
           multiValue: true
           path: |
               (
-                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('ticketing:admin/insert_tenant_id_here') else ()
+                if (mapping:get-attributes('groups')='your_sso_ldap_group') then ('role_name/insert_tenant_id_here') else ()
               )
         -
           multiValue: true
