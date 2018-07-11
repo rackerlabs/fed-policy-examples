@@ -1,0 +1,26 @@
+---
+mapping:
+  rules:
+    -
+      local:
+        faws:
+          groups:
+            multiValue: true
+            value:
+              - "{Ats(groups)}"
+        user:
+          domain: "{D}"
+          email: "{Pt(/saml2p:Response/saml2:Assertion/saml2:Subject/saml2:NameID)}"
+          expire: "{D}"
+          name: "{D}"
+          roles:
+            - "{0}"
+      remote:
+        -
+          multiValue: true
+          path: |
+              (
+                if (mapping:get-attributes('groups')='rax.ticketing') then 'ticketing:admin' else (),
+                if (mapping:get-attributes('groups')='rax.billing') then 'billing:admin' else ()
+              )
+  version: RAX-1
